@@ -165,9 +165,16 @@ end
 file_out = join([map_folder, 'regions_and_provinces_map.mat']);
 save(file_out, 'regions', 'provinces')
 
+% Colormap intervals
+n_levels = 6;
+low_level = 0.;
+upp_level = 12.;
+
+%% Fig
 f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
 for k = 1:n_regs
-    color = determine_color(0. + rand() * (10. - 0.));
+    color = determine_color(low_level + rand() * (upp_level - low_level), ...
+        n_levels, low_level, upp_level);
     mapshow(regions{k}, 'FaceColor', color);
     if k == 1
         hold on;
@@ -176,7 +183,8 @@ end
 
 f_prov = figure('units', 'normalized', 'Position', [0 0 1 1]);
 for k = 1:n_prov_out
-    color = determine_color(0. + rand() * (10. - 0.));
+    color = determine_color(low_level + rand() * (upp_level - low_level), ...
+        n_levels, low_level, upp_level);
     mapshow(provinces{k}, 'FaceColor', color);
     if k == 1
         hold on;
