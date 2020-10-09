@@ -13,8 +13,8 @@ file_root_reg = 'dpc-covid19-ita-regioni-';
 data_dir_prov = join([data_dir, 'dati-province/']);
 file_root_prov = 'dpc-covid19-ita-province-';
 
-% Avg over last 14 days
-n_days = 14;
+% Avg over last X days
+n_days = 7;
 
 % Region names
 reg_names = get_region_names();
@@ -24,11 +24,13 @@ n_provs = size(prov_names, 1);     % Number of provinces
 
 % Get date
 
-% n_asd = 65;
-% for asd = 1:n_asd
+% first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('08-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('08-10-2020', 'InputFormat', 'dd-MM-yyyy');
+n_days_back = days(last_day_back - first_day_back);
+for days_back = 0:n_days_back
 
-% today = datetime - (n_asd - asd + 1);
-today = datetime - 1;
+today = last_day_back - (n_days_back - days_back);
 
 new_cases_reg = zeros(n_days, n_regs);
 new_cases_prov = zeros(n_days, n_provs);
@@ -145,38 +147,63 @@ end
 
 %% MAP
 
+% Colormap intervals
+n_levels = 6;
+low_level = 0.;
+upp_level = 12.;
+
 % Load map data
 map_folder = '../geo/';
 load(join([map_folder, 'regions_and_provinces_map.mat']));
 
 f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
-subplot(1, 2, 1)
-for k = 1:n_regs
-    color = determine_color(new_cases_reg_avg_100k(k));
-    mapshow(regions{k}, 'FaceColor', color);
-    if k == 1
-        hold on;
-    end
-end
-set(get(gca, 'Title'), 'String', 'Region Map');
+% subplot(1, 2, 1)
+% for k = 1:n_regs
+%     color = determine_color(new_cases_reg_avg_100k(k));
+%     mapshow(regions{k}, 'FaceColor', color);
+%     if k == 1
+%         hold on;
+%     end
+% end
+% set(get(gca, 'Title'), 'String', 'Region Map');
 
 % f_prov = figure('units', 'normalized', 'Position', [0 0 1 1]);
-subplot(1, 2, 2)
+% subplot(1, 2, 2)
 for k = 1:n_provs
-    color = determine_color(new_cases_prov_avg_100k(k));
+    color = determine_color(new_cases_prov_avg_100k(k), ...
+        n_levels, low_level, upp_level);
     mapshow(provinces{k}, 'FaceColor', color);
     if k == 1
         hold on;
     end
 end
-set(get(gca, 'Title'), 'String', 'Provinces Map');
+date_format = 'mmmm dd, yyyy';
+set(get(gca, 'Title'), 'String', datestr(today, date_format));
+% set(get(gca, 'Title'), 'String', 'Province-Colored Map');
+cb = colorbar(gca);
+
+step_level = (upp_level - low_level) / n_levels;
+low_color_level = low_level - step_level;
+upp_color_level = upp_level + step_level;
+caxis([low_color_level, upp_color_level]);
+% set(cb, 'Limits', [low_color_level, low_color_level]);
+set(cb, 'Ticks', low_level:step_level:upp_level);
+set(cb, 'Location', 'South');
+cb.Label.String = 'Average daily cases per 100,000 people in the last week';
+cb.Label.FontSize = 10;
+set(cb, 'AxisLocation', 'out');
+
+axis off
 
 fig_dir = '../figs/';
-saveas(f_reg, ([fig_dir, 'hotspots-', day_str, '.png']));
+exportgraphics(gca, join([fig_dir, 'hotspots-', day_str, '.png']));
+% saveas(f_reg, join([fig_dir, 'hotspots-', day_str, '.png']));
 
-% close(f_reg);
+if days_back < n_days_back
+    close(f_reg);
+end
 
-% end
+end
 
 fclose('all');
 
