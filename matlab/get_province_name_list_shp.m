@@ -1,4 +1,4 @@
-function name_list = get_province_name_list()
+function name_list = get_province_name_list_shp()
     
     n_prov = 110;
     name_list = cell(n_prov, 1);

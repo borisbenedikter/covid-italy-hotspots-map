@@ -1,6 +1,6 @@
 function out = is_province(land)
     
-name = get_province_name_list();
+name = get_province_name_list_shp();
 n_prov = size(name, 1);
 
 out = false;

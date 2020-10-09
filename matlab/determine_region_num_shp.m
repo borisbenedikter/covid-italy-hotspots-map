@@ -1,6 +1,6 @@
-function i_reg = determine_region(province)
+function i_reg = determine_region_num_shp(province)
 
-    name = get_province_name_list();
+    name = get_province_name_list_shp();
     n_prov = size(name, 1);
 
     i = 1;

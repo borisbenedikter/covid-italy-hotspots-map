@@ -123,7 +123,6 @@ LAT_min = 35. + 29. / 60. + 26. / 3600.;
 LON_max = 18. + 31. / 60. + 13. / 3600.;
 LON_min = 6. + 37. / 60. + 32. / 3600.;
 
-f = figure('units', 'normalized', 'Position', [0 0 1 1]);
 % h = worldmap('Italy');
 % land = shaperead('landareas.shp', 'UseGeoCoords', true);
 map_folder = '../geo/';
@@ -139,29 +138,34 @@ land = shaperead(shapefile);
 % mapshow(land);
 
 n_land = size(land, 1);
-provinces = [];
+provinces_shp = [];
 for k = 1:n_land
     LAT = land(k).latitude;
     LON = land(k).longitude;
     if (LAT >= LAT_min && LAT <= LAT_max && ...
         LON >= LON_min && LON <= LON_max)
         if (is_province(land(k)))
-            provinces = [provinces; land(k)];
+            provinces_shp = [provinces_shp; land(k)];
             fprintf('%30s\n', land(k).name);
         end
     end
 end
 
-n_prov = size(provinces, 1);
+n_prov = size(provinces_shp, 1);
 n_regs = 22;     % Number of regions
 regions = cell(n_regs, 1);
+n_prov_out = 111;
+provinces = cell(n_prov_out, 1);
 for k = 1:n_prov
-    i_reg = determine_region(provinces(k));
-    regions{i_reg} = [regions{i_reg}; provinces(k)];
+    i_reg = determine_region_num_shp(provinces_shp(k));
+    i_prov = determine_province_num_shp(provinces_shp(k));
+    regions{i_reg} = [regions{i_reg}; provinces_shp(k)];
+    provinces{i_prov} = [provinces{i_prov}; provinces_shp(k)];
 end
-file_out = join([map_folder, 'regions_map.mat']);
-save(file_out, 'regions')
+file_out = join([map_folder, 'regions_and_provinces_map.mat']);
+save(file_out, 'regions', 'provinces')
 
+f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
 for k = 1:n_regs
     color = determine_color(0. + rand() * (10. - 0.));
     mapshow(regions{k}, 'FaceColor', color);
@@ -170,8 +174,17 @@ for k = 1:n_regs
     end
 end
 
+f_prov = figure('units', 'normalized', 'Position', [0 0 1 1]);
+for k = 1:n_prov_out
+    color = determine_color(0. + rand() * (10. - 0.));
+    mapshow(provinces{k}, 'FaceColor', color);
+    if k == 1
+        hold on;
+    end
+end
+
 fclose('all');
 
 % % h = mapshow(land); %, 'FaceColor', [0.15 0.5 0.15])
-% h = mapshow(provinces); %, 'FaceColor', [0.15 0.5 0.15])
+% h = mapshow(provinces_shp); %, 'FaceColor', [0.15 0.5 0.15])
 
