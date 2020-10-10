@@ -156,7 +156,9 @@ upp_level = 12.;
 map_folder = '../geo/';
 load(join([map_folder, 'regions_and_provinces_map.mat']));
 
-f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
+position_left = [0.0005, 0.0472, 0.4990, 0.8574];
+f_reg = figure('units', 'normalized', 'Position', position_left);
+% f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
 % subplot(1, 2, 1)
 % for k = 1:n_regs
 %     color = determine_color(new_cases_reg_avg_100k(k));
