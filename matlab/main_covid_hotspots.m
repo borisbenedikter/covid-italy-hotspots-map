@@ -25,8 +25,8 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('10-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('10-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('11-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('11-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -158,6 +158,8 @@ load(join([map_folder, 'regions_and_provinces_map.mat']));
 
 position_left = [0.0005, 0.0472, 0.4990, 0.8574];
 f_reg = figure('units', 'normalized', 'Position', position_left);
+cmap = colormap(flip(hot(n_levels + 2), 1));
+
 % f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
 % subplot(1, 2, 1)
 % for k = 1:n_regs
@@ -172,9 +174,9 @@ f_reg = figure('units', 'normalized', 'Position', position_left);
 % f_prov = figure('units', 'normalized', 'Position', [0 0 1 1]);
 % subplot(1, 2, 2)
 for k = 1:n_provs
-    color = determine_color(new_cases_prov_avg_100k(k), ...
+    level = determine_level(new_cases_prov_avg_100k(k), ...
         n_levels, low_level, upp_level);
-    mapshow(provinces{k}, 'FaceColor', color);
+    mapshow(provinces{k}, 'FaceColor', cmap(level, :));
     if k == 1
         hold on;
     end
