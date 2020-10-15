@@ -203,7 +203,8 @@ set(cb, 'AxisLocation', 'out');
 axis off
 
 fig_dir = '../figs/';
-exportgraphics(gca, join([fig_dir, 'hotspots-', day_str, '.png']));
+exportgraphics(gca, join([fig_dir, 'hotspots-', day_str, '.png']), ...
+    'Resolution', 300);
 % saveas(f_reg, join([fig_dir, 'hotspots-', day_str, '.png']));
 
 if days_back < n_days_back
