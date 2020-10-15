@@ -25,7 +25,7 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('14-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('15-09-2020', 'InputFormat', 'dd-MM-yyyy');
 last_day_back = datetime('15-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
@@ -185,7 +185,7 @@ for k = 1:n_provs
     end
 end
 date_format = 'mmmm dd, yyyy';
-set(get(gca, 'Title'), 'String', datestr(today, date_format), ...
+set(get(gca, 'Title'), 'String', join(['\bf ', datestr(today, date_format)]), ...
     'Interpreter', 'Latex');
 % set(get(gca, 'Title'), 'String', 'Province-Colored Map', ...
     % 'Interpreter', 'Latex');
