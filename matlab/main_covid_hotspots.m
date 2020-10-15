@@ -25,8 +25,8 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('13-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('13-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('15-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('15-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -119,17 +119,20 @@ end
 %% Print report
 today
 
-fprintf('%20s%20s%20s\n', 'Regione', 'Media nuovi casi', 'x100000');
+fprintf('%6s%-20s%20s%10s\n', '# ', 'Regione', 'Media nuovi casi', 'x100000');
 for i = 1:n_regs
-    fprintf('%20s%20.2f%20.2f\n', ...
+    fprintf('%6s%-20s%20.2f%10.2f\n', ...
+        sprintf('%4d. ', i), ...
         reg_names{ind_reg_sort(i)}, ...
         new_cases_reg_avg(ind_reg_sort(i)), ...
         new_cases_reg_avg_100k(ind_reg_sort(i)));
 end
 fprintf('\n');
-fprintf('%25s%20s%20s\n', 'Provincia', 'Media nuovi casi', 'x100000');
+fprintf('\n');
+fprintf('%6s%-25s%20s%10s\n', '# ', 'Provincia', 'Media nuovi casi', 'x100000');
 for i = 1:n_provs
-    fprintf('%25s%20.2f%20.2f\n', ...
+    fprintf('%6s%-25s%20.2f%10.2f\n', ...
+        sprintf('%4d. ', i), ...
         prov_names{ind_prov_sort(i)}, ...
         new_cases_prov_avg(ind_prov_sort(i)), ...
         new_cases_prov_avg_100k(ind_prov_sort(i)));
@@ -150,7 +153,7 @@ end
 % Colormap intervals
 n_levels = 6;
 low_level = 0.;
-upp_level = 12.;
+upp_level = 24.;
 
 % Load map data
 map_folder = '../geo/';
