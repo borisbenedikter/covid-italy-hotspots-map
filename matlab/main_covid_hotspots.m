@@ -24,9 +24,9 @@ n_provs = size(prov_names, 1);     % Number of provinces
 
 % Get date
 
-first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-% first_day_back = datetime('01-09-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('15-10-2020', 'InputFormat', 'dd-MM-yyyy');
+% first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -153,7 +153,7 @@ end
 % Colormap intervals
 n_levels = 6;
 low_level = 0.;
-upp_level = 12.;
+upp_level = 24.;
 
 % Load map data
 map_folder = '../geo/';
@@ -205,7 +205,7 @@ set(cb, 'AxisLocation', 'out');
 
 axis off
 
-fig_dir = '../figs/scale-0-12/';
+fig_dir = '../figs/scale-0-24/';
 if verLessThan('matlab', '9.8')
     saveas(f_reg, join([fig_dir, 'hotspots-', day_str, '.png']));
 else
