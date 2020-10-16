@@ -206,9 +206,12 @@ set(cb, 'AxisLocation', 'out');
 axis off
 
 fig_dir = '../figs/';
-exportgraphics(gca, join([fig_dir, 'hotspots-', day_str, '.png']), ...
-    'Resolution', 300);
-% saveas(f_reg, join([fig_dir, 'hotspots-', day_str, '.png']));
+if verLessThan('matlab', '9.8')
+    saveas(f_reg, join([fig_dir, 'hotspots-', day_str, '.png']));
+else
+    exportgraphics(gca, join([fig_dir, 'hotspots-', day_str, '.png']), ...
+        'Resolution', 300);
+end
 
 if days_back < n_days_back
     close(f_reg);
