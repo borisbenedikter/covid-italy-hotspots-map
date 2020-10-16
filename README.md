@@ -7,25 +7,25 @@ The output provides a useful tool to assess the up-to-date incidence and the hot
 
 The evolution of the epidemic incidence since August 3 is reported below.
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20201012.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20201012.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20201005.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20201005.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200928.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200928.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200921.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200921.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200914.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200914.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200907.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200907.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200831.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200831.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200824.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200824.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200817.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200817.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200810.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200810.png?raw=true)
 
-![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/hotspots-20200803.png?raw=true)
+![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-12/hotspots-20200803.png?raw=true)
 
