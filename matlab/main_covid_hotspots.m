@@ -159,8 +159,9 @@ upp_level = 24.;
 map_folder = '../geo/';
 load(join([map_folder, 'regions_and_provinces_map.mat']));
 
-position_left = [0.0005, 0.0472, 0.4990, 0.8574];
-f_reg = figure('units', 'normalized', 'Position', position_left);
+position_left = [1.768, 41.7808, 766.464, 740.7936];
+% position_left = [0.0005, 0.0472, 0.4990, 0.8574];
+f_reg = figure('units', 'pixels', 'Position', position_left);
 cmap = colormap(flip(hot(n_levels + 2), 1));
 
 % f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
