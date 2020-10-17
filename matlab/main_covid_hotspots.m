@@ -25,8 +25,8 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('17-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('17-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -197,6 +197,7 @@ upp_color_level = upp_level + step_level;
 caxis([low_color_level, upp_color_level]);
 % set(cb, 'Limits', [low_color_level, low_color_level]);
 set(cb, 'Ticks', low_level:step_level:upp_level);
+set(cb, 'TickLabelInterpreter', 'latex');
 set(cb, 'Location', 'South');
 cb.Label.String = 'Average daily cases per 100,000 people in the last week';
 cb.Label.Interpreter = 'Latex';
