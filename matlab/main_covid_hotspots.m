@@ -25,8 +25,8 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('16-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('17-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('17-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -159,7 +159,7 @@ upp_level = 24.;
 map_folder = '../geo/';
 load(join([map_folder, 'regions_and_provinces_map.mat']));
 
-position_left = [0.576, 30.5856, 574.848, 555.5952];
+position_left = [1, 31, 575, 556];
 % position_left = [1.768, 41.7808, 766.464, 740.7936];
 % position_left = [0.0005, 0.0472, 0.4990, 0.8574];
 f_reg = figure('units', 'points', 'Position', position_left);
