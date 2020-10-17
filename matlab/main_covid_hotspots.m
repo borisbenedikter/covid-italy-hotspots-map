@@ -187,7 +187,7 @@ for k = 1:n_provs
 end
 date_format = 'mmmm dd, yyyy';
 set(get(gca, 'Title'), 'String', join(['\bf ', datestr(today, date_format)]), ...
-    'Interpreter', 'Latex');
+    'Interpreter', 'Latex', 'FontSize', 11);
 % set(get(gca, 'Title'), 'String', 'Province-Colored Map', ...
     % 'Interpreter', 'Latex');
 cb = colorbar(gca);
@@ -199,10 +199,11 @@ caxis([low_color_level, upp_color_level]);
 % set(cb, 'Limits', [low_color_level, low_color_level]);
 set(cb, 'Ticks', low_level:step_level:upp_level);
 set(cb, 'TickLabelInterpreter', 'latex');
+set(cb, 'FontSize', 9);
 set(cb, 'Location', 'South');
 cb.Label.String = 'Average daily cases per 100,000 people in the last week';
 cb.Label.Interpreter = 'Latex';
-cb.Label.FontSize = 10;
+cb.Label.FontSize = 11;
 set(cb, 'AxisLocation', 'out');
 
 axis off
