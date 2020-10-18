@@ -1,4 +1,4 @@
-function pop = get_region_pop(i_reg)
+function pop = get_region_pop(ID_reg)
 
     % Region Population
     n_regs = 22;
@@ -26,5 +26,5 @@ function pop = get_region_pop(i_reg)
     reg_pop{05, 1} = 4907704;
     reg_pop{04, 1} = 1;
 
-    pop = reg_pop{i_reg, 1};
+    pop = reg_pop{ID_reg, 1};
 end
