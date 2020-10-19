@@ -17,8 +17,8 @@ n_regs = size(reg_names, 1);     % Number of regions
 
 % Date
 % first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('17-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('19-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('19-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
@@ -116,8 +116,8 @@ set(cb, 'Ticks', low_level:step_level:upp_level);
 set(cb, 'TickLabelInterpreter', 'latex');
 set(cb, 'FontSize', 11);
 set(cb, 'Location', 'South');
-cb.Label.String = 'Intensive care unit occupancy rate due to COVID-19 (\%)';
 cb.Label.Interpreter = 'Latex';
+cb.Label.String = 'Intensive care unit occupancy rate due to COVID-19 (\%)';
 cb.Label.FontSize = 11;
 set(cb, 'AxisLocation', 'out');
 
