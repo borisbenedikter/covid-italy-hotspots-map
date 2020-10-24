@@ -17,8 +17,8 @@ n_regs = size(reg_names, 1);     % Number of regions
 
 % Date
 % first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('23-10-2020', 'InputFormat', 'dd-MM-yyyy');
-last_day_back = datetime('23-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('24-10-2020', 'InputFormat', 'dd-MM-yyyy');
+last_day_back = datetime('24-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
 
