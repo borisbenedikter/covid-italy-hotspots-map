@@ -1,1 +1,12 @@
-Limiti*
+# Ignore all
+*
+
+# Except for directories
+!*/
+
+# Except for shp and mat files
+!*.shp
+!*.mat
+
+# Except for this gitignore file
+!.gitignore
