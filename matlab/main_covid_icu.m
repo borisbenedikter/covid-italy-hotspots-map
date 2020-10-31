@@ -16,8 +16,8 @@ reg_names = get_region_names();
 n_regs = size(reg_names, 1);     % Number of regions
 
 % Date
-first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
-% first_day_back = datetime('31-10-2020', 'InputFormat', 'dd-MM-yyyy');
+% first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('31-10-2020', 'InputFormat', 'dd-MM-yyyy');
 last_day_back = datetime('31-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
@@ -97,10 +97,16 @@ cmap = colormap(flip(hot(n_levels + 2), 1));
 for k = 1:n_regs
     level = determine_level(icu_cases_reg_frac(k), ...
         n_levels, low_level, upp_level);
-    mapshow(regions{k}, 'FaceColor', cmap(level, :));
+    mapshow(regions{k}, 'FaceColor', cmap(level, :), ...
+    'LineWidth', 1.1);
     if k == 1
         hold on;
     end
+end
+n_provs = size(provinces, 1);
+for k = 1:n_provs
+    mapshow(provinces{k}, 'FaceAlpha', 0., ...
+        'LineWidth', 0.25);
 end
 date_format = 'mmmm dd, yyyy';
 set(get(gca, 'Title'), 'String', join(['\bf ', datestr(day, date_format)]), ...
@@ -120,6 +126,10 @@ cb.Label.Interpreter = 'Latex';
 cb.Label.String = 'Intensive care unit occupancy rate due to COVID-19 (\%)';
 cb.Label.FontSize = 11;
 set(cb, 'AxisLocation', 'out');
+
+ymin = 3900000;
+ymax = 5220000;
+axis([-inf, +inf, ymin, ymax]);
 
 axis off
 
