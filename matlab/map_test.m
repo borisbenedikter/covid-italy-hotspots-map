@@ -125,42 +125,58 @@ LON_min = 6. + 37. / 60. + 32. / 3600.;
 
 % h = worldmap('Italy');
 % land = shaperead('landareas.shp', 'UseGeoCoords', true);
+% map_folder = '../geo/';
+% shapefile = join([map_folder, 'ne_10m_admin_1_states_provinces.shp']);
 map_folder = '../geo/';
-shapefile = join([map_folder, 'ne_10m_admin_1_states_provinces.shp']);
+prov_folder = 'Limiti01012018_g/ProvCM01012018_g/';
+reg_folder = 'Limiti01012018_g/Reg01012018_g/';
+shapefile_prov = join([map_folder, prov_folder, 'ProvCM01012018_g_WGS84.shp']);
+shapefile_reg = join([map_folder, reg_folder, 'Reg01012018_g_WGS84.shp']);
 
-% map_folder = '../data/aree/shp/';
-% % shapefile = join([map_folder, 'dpc-covid-19-ita-aree.shp']);
-% shapefile = join([map_folder, 'dpc-covid-19-ita-aree-comuni.shp']);
-
-land = shaperead(shapefile);
+land_prov = shaperead(shapefile_prov);
+land_reg = shaperead(shapefile_reg);
 
 % figure
-% mapshow(land);
+% mapshow(land_prov);
 
-n_land = size(land, 1);
-provinces_shp = [];
-for k = 1:n_land
-    LAT = land(k).latitude;
-    LON = land(k).longitude;
-    if (LAT >= LAT_min && LAT <= LAT_max && ...
-        LON >= LON_min && LON <= LON_max)
-        if (is_province(land(k)))
-            provinces_shp = [provinces_shp; land(k)];
-            fprintf('%30s\n', land(k).name);
-        end
-    end
-end
+n_land_prov = size(land_prov, 1);
+n_land_reg = size(land_reg, 1);
+% provinces_shp = [];
+% for k = 1:n_land
+%     LAT = land_prov(k).latitude;
+%     LON = land_prov(k).longitude;
+%     if (LAT >= LAT_min && LAT <= LAT_max && ...
+%         LON >= LON_min && LON <= LON_max)
+%         if (is_province(land_prov(k)))
+%             provinces_shp = [provinces_shp; land_prov(k)];
+%             fprintf('%30s\n', land_prov(k).name);
+%         end
+%     end
+% end
 
-n_prov = size(provinces_shp, 1);
+% n_prov = size(provinces_shp, 1);
 n_regs = 22;     % Number of regions
 regions = cell(n_regs, 1);
 n_prov_out = 111;
 provinces = cell(n_prov_out, 1);
-for k = 1:n_prov
-    i_reg = determine_region_num_shp(provinces_shp(k));
-    i_prov = determine_province_num_shp(provinces_shp(k));
-    regions{i_reg} = [regions{i_reg}; provinces_shp(k)];
-    provinces{i_prov} = [provinces{i_prov}; provinces_shp(k)];
+% for k = 1:n_prov
+for k = 1:n_land_prov
+    ID_prov = land_prov(k).COD_PROV;
+    if ID_prov == 21 % Bolzano
+        ID_reg = 21;
+        regions{ID_reg} = [regions{ID_reg}; land_prov(k)];
+    elseif ID_prov == 22
+        ID_reg = 22;
+        regions{ID_reg} = [regions{ID_reg}; land_prov(k)];
+    end
+    provinces{ID_prov} = [provinces{ID_prov}; land_prov(k)];
+end
+for k = 1:n_land_reg
+    ID_reg = land_reg(k).COD_REG;
+    if ID_reg == 4 % Trentino
+        continue;
+    end
+    regions{ID_reg} = [regions{ID_reg}; land_reg(k)];
 end
 file_out = join([map_folder, 'regions_and_provinces_map.mat']);
 save(file_out, 'regions', 'provinces')
@@ -172,20 +188,24 @@ upp_level = 12.;
 
 %% Fig
 f_reg = figure('units', 'normalized', 'Position', [0 0 1 1]);
+cmap = colormap(flip(hot(n_levels + 2), 1));
 for k = 1:n_regs
-    color = determine_color(low_level + rand() * (upp_level - low_level), ...
+    rand_val = low_level + rand() * (upp_level - low_level);
+    level = determine_level(rand_val, ...
         n_levels, low_level, upp_level);
-    mapshow(regions{k}, 'FaceColor', color);
+    mapshow(regions{k}, 'FaceColor', cmap(level, :));
     if k == 1
         hold on;
     end
 end
 
 f_prov = figure('units', 'normalized', 'Position', [0 0 1 1]);
+cmap = colormap(flip(hot(n_levels + 2), 1));
 for k = 1:n_prov_out
-    color = determine_color(low_level + rand() * (upp_level - low_level), ...
+    rand_val = low_level + rand() * (upp_level - low_level);
+    level = determine_level(rand_val, ...
         n_levels, low_level, upp_level);
-    mapshow(provinces{k}, 'FaceColor', color);
+    mapshow(provinces{k}, 'FaceColor', cmap(level, :));
     if k == 1
         hold on;
     end
