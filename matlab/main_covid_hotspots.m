@@ -25,7 +25,7 @@ n_provs = size(prov_names, 1);     % Number of provinces
 % Get date
 
 % first_day_back = datetime('01-07-2020', 'InputFormat', 'dd-MM-yyyy');
-first_day_back = datetime('31-10-2020', 'InputFormat', 'dd-MM-yyyy');
+first_day_back = datetime('01-10-2020', 'InputFormat', 'dd-MM-yyyy');
 last_day_back = datetime('31-10-2020', 'InputFormat', 'dd-MM-yyyy');
 n_days_back = days(last_day_back - first_day_back);
 for days_back = 0:n_days_back
