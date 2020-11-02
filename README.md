@@ -8,8 +8,9 @@ The output provides a useful tool to assess the up-to-date incidence and the hot
 An example map is the following:
 ![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/scale-0-54/hotspots-20201101.png?raw=true)
 
-The main_covid_icu.m script computes, for each Italian region, the number of patients in intensive care units (ICUs) and compares it to the number of ICU spots available in the corresponding region (data provided by [Sole 24 Ore](https://www.ilsole24ore.com/art/coronavirus-terapie-intensive-aumento-quali-regioni-sono-pronte-la-seconda-ondata-ADNUkdv?cmpid=nl_coronavirus)).
+The main_covid_icu.m script computes, for each Italian region, the number of patients in intensive care units (ICUs) and compares it to the number of ICU spots available in the corresponding region (data provided by [Il Sole 24 Ore](https://lab24.ilsole24ore.com/coronavirus/)).
 Since in non-emergency conditions 50% of ICU spots are free, occupancy rates (due exclusively to COVID-19) above this threshold are to be considered critical.
+The Italian National Institute of Health set 30% as emergency threshold.
 The map provides a comprehensive overview of the impact of COVID-19 on the national healthcare system.
 An example map is the following:
 ![alt text](https://github.com/borisbenedikter/covid-italy-hotspots-map/blob/master/figs/icu/icu-20201101.png?raw=true)
